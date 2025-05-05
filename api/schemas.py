@@ -1,6 +1,10 @@
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List
 from datetime import datetime
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str
 
 class PlayerBase(BaseModel):
     name: str
@@ -18,8 +22,9 @@ class Player(PlayerBase):
     roundsWon: int
     roundsLost: int
 
-    class Config:
-        orm_mode = True
+    model_config = {
+        "from_attributes": True
+    }
 
 class MatchPlayerBase(BaseModel):
     player_name: str
@@ -29,8 +34,9 @@ class MatchPlayerBase(BaseModel):
     assists: int
 
 class MatchPlayer(MatchPlayerBase):
-    class Config:
-        orm_mode = True
+    model_config = {
+        "from_attributes": True
+    }
 
 class MatchCreate(BaseModel):
     map: str
@@ -44,5 +50,6 @@ class MatchOut(BaseModel):
     score: dict
     players: List[MatchPlayer]
 
-    class Config:
-        orm_mode = True
+    model_config = {
+        "from_attributes": True
+    }
