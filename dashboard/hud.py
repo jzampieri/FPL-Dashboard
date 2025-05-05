@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 
-API_URL = "http://localhost:8000"
+API_URL = "https://fpl-dashboard-41md.onrender.com"
 st.set_page_config(page_title="FPL Dashboard", layout="wide")
 
 if "is_admin" not in st.session_state:
